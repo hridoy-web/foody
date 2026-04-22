@@ -37,11 +37,7 @@ const Navbar = () => {
                 <ul className="menu">
                     <li><button>Item 1</button></li>
                     <li>
-                        <button>Parent</button>
-                        <ul>
-                            <li><button>Submenu 1</button></li>
-                            <li><button>Submenu 2</button></li>
-                        </ul>
+                        
                     </li>
                     <li><button>Item 3</button></li>
                 </ul>

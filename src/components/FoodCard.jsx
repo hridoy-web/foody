@@ -1,16 +1,19 @@
 import Image from 'next/image'
-import { FaStar } from 'react-icons/fa';
+import Link from 'next/link';
+import { BsInfoCircleFill } from 'react-icons/bs';
+import { FaShoppingCart, FaStar } from 'react-icons/fa';
+import { TbCoinTaka } from 'react-icons/tb';
 
 const FoodCard = ({ foods }) => {
 
-  const { dish_name, image_link, category, rating, price, origin_and_popularity } = foods;
+  const { id, dish_name, image_link, category, rating, price, origin_and_popularity } = foods;
 
   // console.log(dish_name);
 
   return (
     <div className="card bg-base-200 border-2 border-gray-200 rounded-3xl cursor-pointer ">
-      <figure className="w-[300px] h-[400px] w-full">
-        <Image 
+      <figure className="w-[300px] h-[400px]">
+        <Image
           src={image_link}
           alt={dish_name}
           width={300}
@@ -18,17 +21,23 @@ const FoodCard = ({ foods }) => {
           className='object-contain'
         />
       </figure>
-      <div className="card-body space-y-2">
+      <div className="card-body space-y-3">
         <h2 className="card-title">
-          {dish_name}  
+          {dish_name}
+          <div className="badge bg-[#ad00c0] text-white border-[#e600ff] font-semibold">{category}</div>
         </h2>
-        <div className='flex gap-4 '>
-          <div className="badge bg-[#622069] text-white border-[#591660] font-semibold">{category}</div>
-          <div className='badge font-semibold  bg-[#FEE502] text-[#181600] border-[#f1d800]'><FaStar /> {rating}</div>
+        <div className='flex gap-3 items-center'>
+          <button className='btn text-base font-bold text-gray-800'><FaStar /> Rating: {rating}</button>
+          <button className='btn text-base font-bold text-gray-800'><TbCoinTaka size={20} />Price: {price}</button>
         </div>
         <p className=' text-gray-600 text-base'>{origin_and_popularity}</p>
-        <div className="card-actions justify-end">
-          <div className="btn font-semibold bg-[#03C755] text-white border-[#00b544] rounded-lg">Price: {price}</div>
+        <div className="card-actions items-center justify-between">
+
+          <Link href={`/foods/${id}`}>
+            <button className='btn bg-[#0967C2] text-white border-[#0059b3] cursor-pointer transition-all duration-500 hover:scale-95'><BsInfoCircleFill />Show Details</button>
+          </Link>
+
+          <button className='btn bg-[#03C755] text-white border-[#00b544]cursor-pointer transition-all duration-500 hover:scale-95'><FaShoppingCart />Add to Cart</button>
         </div>
       </div>
     </div>
